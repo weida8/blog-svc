@@ -1,0 +1,22 @@
+{
+  "name": "blog-svc",
+  "version": "1.0.0",
+  "description": "node express backend for trailblazer blog frontend",
+  "main": "index.js",
+  "repository": "https://github.com/weida8/blog-svc.git",
+  "author": "Wei Da Pan",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.21"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node -r esm index.js"
+  }
+}
