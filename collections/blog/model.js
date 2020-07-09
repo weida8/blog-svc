@@ -9,6 +9,11 @@ export const createBlog = async (reqBody) => {
 }
 
 export const getSubscribedBlogs = (reqBody) => {
-    const getBlog = Blogs.find({author: {$in: reqBody}})
-    return getBlog;
+    const getSubedBlogs = Blogs.find({author: {$in: reqBody}})
+    return getSubedBlogs
+}
+
+export const getBlogs = (reqBody) => {
+    const getBlog = Blogs.find({}, null, {limit: 10})
+    return getBlog
 }

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 export const BlogSchema = new Schema({
     title: String,
-    author: String,
+    authorId: String,
     location: String,
     summary: String,
     date: Date,

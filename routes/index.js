@@ -1,6 +1,6 @@
 import express from 'express'
 import {isAuthenticated} from '../util/isAuthenticated'
-import {createBlog, getSubscribedBlogs} from '../collections/blog/model'
+import {createBlog, getSubscribedBlogs, getBlogs} from '../collections/blog/model'
 import {createUser, loginUser} from '../collections/user/model'
 
 const router = express.Router()
@@ -18,7 +18,19 @@ router.post('/postBlog', (req, res, next) => isAuthenticated(req, res, next), (r
         })    
 })
 
-router.get('/getBlogs', (req, res, next) => isAuthenticated(req, res, next), (req, res) => {
+router.get('/getBlogs', (req, res) => {
+    getBlogs()
+        .then(response => {
+            res.json({
+                status: 200,
+                data: response
+            })
+        }).catch(err => {
+            throw err
+        })
+})
+
+router.get('/getSubscribedBlogs', (req, res, next) => isAuthenticated(req, res, next), (req, res) => {
     getSubscribedBlogs(req.body.subscribedAuthors)
         .then((response) => {
             res.json({
@@ -56,7 +68,7 @@ router.post('/login', (req, res) => {
             })
         })
         .catch(err => {
-            res.json({
+            res.status(400).json({
                 status: 400,
                 error: err.message
             })
